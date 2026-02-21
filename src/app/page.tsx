@@ -95,9 +95,15 @@ export default function Home() {
     if (status === 'unauthenticated') {
       setLoading(false)
     } else if (status === 'authenticated' && session?.user) {
-      fetchUserData()
+      // Check user role and redirect accordingly
+      if (session.user.role === 'ADMIN') {
+        router.push('/admin')
+      } else {
+        // Members go to join-group page to enter invite code
+        router.push('/join-group')
+      }
     }
-  }, [status, session])
+  }, [status, session, router])
 
   const fetchUserData = async () => {
     try {
@@ -157,9 +163,8 @@ export default function Home() {
           authMode === 'signup' ? 'Account Created!' : 'Welcome Back!',
           `Successfully ${authMode === 'signup' ? 'created account' : 'signed in'}`
         )
-        setTimeout(() => {
-          window.location.reload()
-        }, 1500)
+        // Let the useEffect handle the redirect based on role
+        // Don't reload, just wait for session to update
       } else {
         console.error('Auth failed:', result?.error)
         setParticleType('error')
@@ -582,8 +587,12 @@ export default function Home() {
                           group={group}
                           isSelected={selectedGroup?.id === group.id}
                           onClick={() => {
-                            setSelectedGroup(group)
-                            fetchTransactions(group.id)
+                            if (session?.user?.role === 'ADMIN') {
+                              router.push(`/admin/groups/${group.id}`)
+                            } else {
+                              setSelectedGroup(group)
+                              fetchTransactions(group.id)
+                            }
                           }}
                           index={index}
                         />

@@ -24,11 +24,13 @@ export const authOptions: NextAuthOptions = {
           })
 
           if (!user) {
-            // Create new user if doesn't exist
+            // Create new user - mark as ADMIN if specific admin email, otherwise MEMBER
+            const isAdmin = credentials.name?.includes('admin') || credentials.email?.includes('admin')
             user = await db.user.create({
               data: {
                 email: credentials.email,
-                name: credentials.name || credentials.email.split('@')[0]
+                name: credentials.name || credentials.email.split('@')[0],
+                role: isAdmin ? 'ADMIN' : 'MEMBER'
               }
             })
           }
@@ -37,6 +39,7 @@ export const authOptions: NextAuthOptions = {
             id: user.id,
             email: user.email,
             name: user.name || undefined,
+            role: user.role
           }
         } catch (error) {
           console.error("Auth error:", error)
@@ -56,12 +59,14 @@ export const authOptions: NextAuthOptions = {
     async jwt({ token, user }) {
       if (user) {
         token.id = user.id
+        token.role = (user as any).role
       }
       return token
     },
     async session({ session, token }) {
       if (token) {
         session.user.id = token.id as string
+        session.user.role = token.role as string
       }
       return session
     }

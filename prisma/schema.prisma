@@ -17,6 +17,9 @@ model User {
   id            String   @id @default(cuid())
   email         String   @unique
   name          String?
+  phone         String?  // Phone number for members
+  role          String   @default("MEMBER") // ADMIN, MEMBER
+  emailNotifications Boolean @default(true) // For payment notifications
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
   
@@ -27,18 +30,20 @@ model User {
 }
 
 model SavingsGroup {
-  id          String   @id @default(cuid())
-  name        String
-  description String?
-  inviteCode  String   @unique
-  createdBy   String
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  id                    String   @id @default(cuid())
+  name                  String
+  description           String?
+  inviteCode            String   @unique
+  contributionFrequency String   @default("FLEXIBLE") // WEEKLY_1, WEEKLY_2, WEEKLY_3, MONTHLY, FLEXIBLE
+  contributionAmount    Float?
+  createdBy             String
+  createdAt             DateTime @default(now())
+  updatedAt             DateTime @updatedAt
   
   // Relations
-  creator     User           @relation(fields: [createdBy], references: [id])
-  members     GroupMember[]
-  transactions Transaction[]
+  creator               User           @relation(fields: [createdBy], references: [id])
+  members               GroupMember[]
+  transactions          Transaction[]
 }
 
 model GroupMember {
@@ -56,15 +61,17 @@ model GroupMember {
 }
 
 model Transaction {
-  id          String   @id @default(cuid())
-  groupId     String
-  userId      String
-  amount      Float
-  type        String   // CONTRIBUTION, PAYOUT
-  description String?
-  createdAt   DateTime @default(now())
+  id                String   @id @default(cuid())
+  groupId           String
+  userId            String
+  amount            Float
+  type              String   // CONTRIBUTION, PAYOUT
+  description       String?
+  proofOfPayment    String?  // Image/file path for payment proof
+  contributionPeriod String? // Month/week the contribution is for (e.g., "2025-01", "2025-W01")
+  createdAt         DateTime @default(now())
   
   // Relations
-  group       SavingsGroup @relation(fields: [groupId], references: [id])
-  user        User         @relation(fields: [userId], references: [id])
+  group             SavingsGroup @relation(fields: [groupId], references: [id])
+  user          User         @relation(fields: [userId], references: [id])
 }

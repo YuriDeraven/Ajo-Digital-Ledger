@@ -2,7 +2,7 @@
 
 import { motion, AnimatePresence } from "framer-motion"
 import { CheckCircle, XCircle, AlertCircle, Info, X } from "lucide-react"
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 
 interface Toast {
   id: string
@@ -19,6 +19,7 @@ interface ToastProps {
 
 function ToastComponent({ toast, onClose }: ToastProps) {
   const [progress, setProgress] = useState(100)
+  const hasClosedRef = useRef(false)
 
   useEffect(() => {
     const duration = toast.duration || 5000
@@ -26,16 +27,20 @@ function ToastComponent({ toast, onClose }: ToastProps) {
     const decrement = (100 / duration) * interval
 
     const timer = setInterval(() => {
-      setProgress((prev) => {
-        if (prev <= 0) {
-          onClose(toast.id)
-          return 0
-        }
-        return prev - decrement
-      })
+      setProgress((prev) => prev - decrement)
     }, interval)
 
-    return () => clearInterval(timer)
+    const timeoutId = setTimeout(() => {
+      if (!hasClosedRef.current) {
+        hasClosedRef.current = true
+        onClose(toast.id)
+      }
+    }, duration)
+
+    return () => {
+      clearInterval(timer)
+      clearTimeout(timeoutId)
+    }
   }, [toast.id, toast.duration, onClose])
 
   const icons = {
@@ -89,7 +94,12 @@ function ToastComponent({ toast, onClose }: ToastProps) {
           )}
         </div>
         <motion.button
-          onClick={() => onClose(toast.id)}
+          onClick={() => {
+            if (!hasClosedRef.current) {
+              hasClosedRef.current = true
+              onClose(toast.id)
+            }
+          }}
           className="text-gray-400 hover:text-gray-600 transition-colors"
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
@@ -102,7 +112,7 @@ function ToastComponent({ toast, onClose }: ToastProps) {
       <motion.div
         className="absolute bottom-0 left-0 h-1 bg-gray-300 rounded-b-lg overflow-hidden"
         initial={{ width: "100%" }}
-        animate={{ width: `${progress}%` }}
+        animate={{ width: `${Math.max(0, progress)}%` }}
         transition={{ duration: 0.05, ease: "linear" }}
       >
         <motion.div
@@ -113,7 +123,7 @@ function ToastComponent({ toast, onClose }: ToastProps) {
             "bg-blue-500"
           }`}
           initial={{ width: "100%" }}
-          animate={{ width: `${progress}%` }}
+          animate={{ width: "100%" }}
           transition={{ duration: 0.05, ease: "linear" }}
         />
       </motion.div>

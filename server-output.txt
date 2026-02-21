@@ -1,0 +1,97 @@
+C:\Program Files\nodejs\node.exe: --experimental-detect-module-leaks= is not allowed in NODE_OPTIONS
+
+> nextjs_tailwind_shadcn_ts@0.1.0 dev
+> next dev
+
+   Γû▓ Next.js 15.3.5
+   - Local:        http://localhost:3000
+   - Network:      http://192.168.1.112:3000
+   - Environments: .env.local
+
+ Γ£ô Starting...
+ Γ£ô Ready in 2.7s
+ Γùï Compiling / ...
+Request timed out after 3000ms
+
+Retrying 1/3...
+Request timed out after 3000ms
+
+Retrying 1/3...
+Request timed out after 3000ms
+
+Retrying 1/3...
+Request timed out after 3000ms
+
+Retrying 1/3...
+Request timed out after 3000ms
+
+Retrying 1/3...
+ Γ£ô Compiled / in 16s (1722 modules)
+ GET /?id=93fb3f1b-f3d2-4cd5-9744-0222c9c6c98f&vscodeBrowserReqId=1770218382300 200 in 10206ms
+ Γ£ô Compiled in 1274ms (837 modules)
+ Γ£ô Compiled in 158ms (823 modules)
+ Γùï Compiling /api/auth/[...nextauth] ...
+ Γ£ô Compiled /api/auth/[...nextauth] in 5.7s (1930 modules)
+[next-auth][warn][DEBUG_ENABLED] 
+https://next-auth.js.org/warnings#debug_enabled
+ GET /api/auth/session 200 in 8430ms
+ GET / 200 in 536ms
+ GET /api/auth/session 200 in 99ms
+ Γùï Compiling /join-group ...
+ Γ£ô Compiled /join-group in 3.3s (2029 modules)
+ GET /join-group 200 in 3756ms
+ Γùï Compiling /api/member/groups ...
+ Γ£ô Compiled /api/member/groups in 1160ms (2043 modules)
+[next-auth][warn][DEBUG_ENABLED] 
+https://next-auth.js.org/warnings#debug_enabled
+prisma:query SELECT `main`.`SavingsGroup`.`id`, `main`.`SavingsGroup`.`name`, `main`.`SavingsGroup`.`description`, `main`.`SavingsGroup`.`inviteCode`, `main`.`SavingsGroup`.`createdBy`, `main`.`SavingsGroup`.`createdAt`, `main`.`SavingsGroup`.`updatedAt`, COALESCE(`aggr_selection_0_GroupMember`.`_aggr_count_members`, 0) AS `_aggr_count_members`, COALESCE(`aggr_selection_1_Transaction`.`_aggr_count_transactions`, 0) AS `_aggr_count_transactions` FROM `main`.`SavingsGroup` LEFT JOIN (SELECT `main`.`GroupMember`.`groupId`, COUNT(*) AS `_aggr_count_members` FROM `main`.`GroupMember` WHERE 1=1 GROUP BY `main`.`GroupMember`.`groupId`) AS `aggr_selection_0_GroupMember` ON (`main`.`SavingsGroup`.`id` = `aggr_selection_0_GroupMember`.`groupId`) LEFT JOIN (SELECT `main`.`Transaction`.`groupId`, COUNT(*) AS `_aggr_count_transactions` FROM `main`.`Transaction` WHERE 1=1 GROUP BY `main`.`Transaction`.`groupId`) AS `aggr_selection_1_Transaction` ON (`main`.`SavingsGroup`.`id` = `aggr_selection_1_Transaction`.`groupId`) WHERE EXISTS(SELECT `t0`.`groupId` FROM `main`.`GroupMember` AS `t0` WHERE (`t0`.`userId` = ? AND (`main`.`SavingsGroup`.`id`) = (`t0`.`groupId`) AND `t0`.`groupId` IS NOT NULL)) ORDER BY `main`.`SavingsGroup`.`createdAt` DESC LIMIT ? OFFSET ?
+ GET /api/member/groups 200 in 1779ms
+ GET /api/auth/providers 200 in 45ms
+ GET /api/auth/csrf 200 in 18ms
+ POST /api/auth/callback/credentials 200 in 17ms
+ GET /api/auth/session 200 in 15ms
+ GET /?id=93fb3f1b-f3d2-4cd5-9744-0222c9c6c98f&vscodeBrowserReqId=1770218382300 200 in 595ms
+ GET /api/auth/session 200 in 26ms
+ GET /api/auth/providers 200 in 48ms
+ GET /api/auth/csrf 200 in 16ms
+ POST /api/auth/callback/credentials 200 in 16ms
+ GET /api/auth/session 200 in 16ms
+ GET /?id=93fb3f1b-f3d2-4cd5-9744-0222c9c6c98f&vscodeBrowserReqId=1770218382300 200 in 110ms
+ GET /api/auth/session 200 in 142ms
+ GET /api/auth/providers 200 in 26ms
+ GET /api/auth/csrf 200 in 14ms
+ POST /api/auth/callback/credentials 200 in 13ms
+ GET /api/auth/session 200 in 14ms
+ GET /?id=93fb3f1b-f3d2-4cd5-9744-0222c9c6c98f&vscodeBrowserReqId=1770218382300 200 in 87ms
+ GET /api/auth/session 200 in 25ms
+ GET /api/auth/providers 200 in 31ms
+ GET /api/auth/csrf 200 in 15ms
+ POST /api/auth/callback/credentials 200 in 13ms
+ GET /api/auth/session 200 in 12ms
+ GET /?id=93fb3f1b-f3d2-4cd5-9744-0222c9c6c98f&vscodeBrowserReqId=1770218382300 200 in 69ms
+ GET /api/auth/session 200 in 29ms
+ GET / 200 in 216ms
+ GET /api/auth/session 200 in 61ms
+ GET /api/auth/session 200 in 27ms
+ GET /join-group 200 in 100ms
+prisma:query SELECT 1
+prisma:query SELECT `main`.`SavingsGroup`.`id`, `main`.`SavingsGroup`.`name`, `main`.`SavingsGroup`.`description`, `main`.`SavingsGroup`.`inviteCode`, `main`.`SavingsGroup`.`createdBy`, `main`.`SavingsGroup`.`createdAt`, `main`.`SavingsGroup`.`updatedAt`, COALESCE(`aggr_selection_0_GroupMember`.`_aggr_count_members`, 0) AS `_aggr_count_members`, COALESCE(`aggr_selection_1_Transaction`.`_aggr_count_transactions`, 0) AS `_aggr_count_transactions` FROM `main`.`SavingsGroup` LEFT JOIN (SELECT `main`.`GroupMember`.`groupId`, COUNT(*) AS `_aggr_count_members` FROM `main`.`GroupMember` WHERE 1=1 GROUP BY `main`.`GroupMember`.`groupId`) AS `aggr_selection_0_GroupMember` ON (`main`.`SavingsGroup`.`id` = `aggr_selection_0_GroupMember`.`groupId`) LEFT JOIN (SELECT `main`.`Transaction`.`groupId`, COUNT(*) AS `_aggr_count_transactions` FROM `main`.`Transaction` WHERE 1=1 GROUP BY `main`.`Transaction`.`groupId`) AS `aggr_selection_1_Transaction` ON (`main`.`SavingsGroup`.`id` = `aggr_selection_1_Transaction`.`groupId`) WHERE EXISTS(SELECT `t0`.`groupId` FROM `main`.`GroupMember` AS `t0` WHERE (`t0`.`userId` = ? AND (`main`.`SavingsGroup`.`id`) = (`t0`.`groupId`) AND `t0`.`groupId` IS NOT NULL)) ORDER BY `main`.`SavingsGroup`.`createdAt` DESC LIMIT ? OFFSET ?
+ GET /api/member/groups 200 in 84ms
+prisma:query SELECT `main`.`SavingsGroup`.`id`, `main`.`SavingsGroup`.`name`, `main`.`SavingsGroup`.`description`, `main`.`SavingsGroup`.`inviteCode`, `main`.`SavingsGroup`.`createdBy`, `main`.`SavingsGroup`.`createdAt`, `main`.`SavingsGroup`.`updatedAt`, COALESCE(`aggr_selection_0_GroupMember`.`_aggr_count_members`, 0) AS `_aggr_count_members`, COALESCE(`aggr_selection_1_Transaction`.`_aggr_count_transactions`, 0) AS `_aggr_count_transactions` FROM `main`.`SavingsGroup` LEFT JOIN (SELECT `main`.`GroupMember`.`groupId`, COUNT(*) AS `_aggr_count_members` FROM `main`.`GroupMember` WHERE 1=1 GROUP BY `main`.`GroupMember`.`groupId`) AS `aggr_selection_0_GroupMember` ON (`main`.`SavingsGroup`.`id` = `aggr_selection_0_GroupMember`.`groupId`) LEFT JOIN (SELECT `main`.`Transaction`.`groupId`, COUNT(*) AS `_aggr_count_transactions` FROM `main`.`Transaction` WHERE 1=1 GROUP BY `main`.`Transaction`.`groupId`) AS `aggr_selection_1_Transaction` ON (`main`.`SavingsGroup`.`id` = `aggr_selection_1_Transaction`.`groupId`) WHERE EXISTS(SELECT `t0`.`groupId` FROM `main`.`GroupMember` AS `t0` WHERE (`t0`.`userId` = ? AND (`main`.`SavingsGroup`.`id`) = (`t0`.`groupId`) AND `t0`.`groupId` IS NOT NULL)) ORDER BY `main`.`SavingsGroup`.`createdAt` DESC LIMIT ? OFFSET ?
+ GET /api/member/groups 200 in 28ms
+ GET /api/auth/session 200 in 43ms
+ GET /api/auth/session 200 in 21ms
+prisma:query SELECT `main`.`SavingsGroup`.`id`, `main`.`SavingsGroup`.`name`, `main`.`SavingsGroup`.`description`, `main`.`SavingsGroup`.`inviteCode`, `main`.`SavingsGroup`.`createdBy`, `main`.`SavingsGroup`.`createdAt`, `main`.`SavingsGroup`.`updatedAt`, COALESCE(`aggr_selection_0_GroupMember`.`_aggr_count_members`, 0) AS `_aggr_count_members`, COALESCE(`aggr_selection_1_Transaction`.`_aggr_count_transactions`, 0) AS `_aggr_count_transactions` FROM `main`.`SavingsGroup` LEFT JOIN (SELECT `main`.`GroupMember`.`groupId`, COUNT(*) AS `_aggr_count_members` FROM `main`.`GroupMember` WHERE 1=1 GROUP BY `main`.`GroupMember`.`groupId`) AS `aggr_selection_0_GroupMember` ON (`main`.`SavingsGroup`.`id` = `aggr_selection_0_GroupMember`.`groupId`) LEFT JOIN (SELECT `main`.`Transaction`.`groupId`, COUNT(*) AS `_aggr_count_transactions` FROM `main`.`Transaction` WHERE 1=1 GROUP BY `main`.`Transaction`.`groupId`) AS `aggr_selection_1_Transaction` ON (`main`.`SavingsGroup`.`id` = `aggr_selection_1_Transaction`.`groupId`) WHERE EXISTS(SELECT `t0`.`groupId` FROM `main`.`GroupMember` AS `t0` WHERE (`t0`.`userId` = ? AND (`main`.`SavingsGroup`.`id`) = (`t0`.`groupId`) AND `t0`.`groupId` IS NOT NULL)) ORDER BY `main`.`SavingsGroup`.`createdAt` DESC LIMIT ? OFFSET ?
+ GET /api/member/groups 200 in 32ms
+prisma:query SELECT `main`.`SavingsGroup`.`id`, `main`.`SavingsGroup`.`name`, `main`.`SavingsGroup`.`description`, `main`.`SavingsGroup`.`inviteCode`, `main`.`SavingsGroup`.`createdBy`, `main`.`SavingsGroup`.`createdAt`, `main`.`SavingsGroup`.`updatedAt`, COALESCE(`aggr_selection_0_GroupMember`.`_aggr_count_members`, 0) AS `_aggr_count_members`, COALESCE(`aggr_selection_1_Transaction`.`_aggr_count_transactions`, 0) AS `_aggr_count_transactions` FROM `main`.`SavingsGroup` LEFT JOIN (SELECT `main`.`GroupMember`.`groupId`, COUNT(*) AS `_aggr_count_members` FROM `main`.`GroupMember` WHERE 1=1 GROUP BY `main`.`GroupMember`.`groupId`) AS `aggr_selection_0_GroupMember` ON (`main`.`SavingsGroup`.`id` = `aggr_selection_0_GroupMember`.`groupId`) LEFT JOIN (SELECT `main`.`Transaction`.`groupId`, COUNT(*) AS `_aggr_count_transactions` FROM `main`.`Transaction` WHERE 1=1 GROUP BY `main`.`Transaction`.`groupId`) AS `aggr_selection_1_Transaction` ON (`main`.`SavingsGroup`.`id` = `aggr_selection_1_Transaction`.`groupId`) WHERE EXISTS(SELECT `t0`.`groupId` FROM `main`.`GroupMember` AS `t0` WHERE (`t0`.`userId` = ? AND (`main`.`SavingsGroup`.`id`) = (`t0`.`groupId`) AND `t0`.`groupId` IS NOT NULL)) ORDER BY `main`.`SavingsGroup`.`createdAt` DESC LIMIT ? OFFSET ?
+ GET /api/member/groups 200 in 18ms
+ GET /api/auth/session 200 in 21ms
+prisma:query SELECT `main`.`SavingsGroup`.`id`, `main`.`SavingsGroup`.`name`, `main`.`SavingsGroup`.`description`, `main`.`SavingsGroup`.`inviteCode`, `main`.`SavingsGroup`.`createdBy`, `main`.`SavingsGroup`.`createdAt`, `main`.`SavingsGroup`.`updatedAt`, COALESCE(`aggr_selection_0_GroupMember`.`_aggr_count_members`, 0) AS `_aggr_count_members`, COALESCE(`aggr_selection_1_Transaction`.`_aggr_count_transactions`, 0) AS `_aggr_count_transactions` FROM `main`.`SavingsGroup` LEFT JOIN (SELECT `main`.`GroupMember`.`groupId`, COUNT(*) AS `_aggr_count_members` FROM `main`.`GroupMember` WHERE 1=1 GROUP BY `main`.`GroupMember`.`groupId`) AS `aggr_selection_0_GroupMember` ON (`main`.`SavingsGroup`.`id` = `aggr_selection_0_GroupMember`.`groupId`) LEFT JOIN (SELECT `main`.`Transaction`.`groupId`, COUNT(*) AS `_aggr_count_transactions` FROM `main`.`Transaction` WHERE 1=1 GROUP BY `main`.`Transaction`.`groupId`) AS `aggr_selection_1_Transaction` ON (`main`.`SavingsGroup`.`id` = `aggr_selection_1_Transaction`.`groupId`) WHERE EXISTS(SELECT `t0`.`groupId` FROM `main`.`GroupMember` AS `t0` WHERE (`t0`.`userId` = ? AND (`main`.`SavingsGroup`.`id`) = (`t0`.`groupId`) AND `t0`.`groupId` IS NOT NULL)) ORDER BY `main`.`SavingsGroup`.`createdAt` DESC LIMIT ? OFFSET ?
+ GET /api/member/groups 200 in 34ms
+ GET /api/auth/providers 200 in 31ms
+ GET /api/auth/csrf 200 in 11ms
+ POST /api/auth/callback/credentials 200 in 16ms
+ GET /api/auth/session 200 in 11ms
+ GET /?id=93fb3f1b-f3d2-4cd5-9744-0222c9c6c98f&vscodeBrowserReqId=1770218382300 200 in 116ms
+ GET /api/auth/session 200 in 25ms
+^C
